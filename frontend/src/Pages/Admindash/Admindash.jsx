@@ -3,22 +3,11 @@ import { NavLink, useLocation, Outlet } from "react-router-dom";
 import {
   LayoutGrid,
   Users,
-  Sprout,
-  ShoppingBag,
-  CloudRain,
-  Bug,
-  BookOpen,
-  BarChart3,
-  MessageSquare,
+  Tractor,
+  Bell,
   Settings,
   LogOut,
   X,
-  ChevronDown,
-  Award,
-  Leaf,
-  Tractor,
-  Bell,
-  FileText,
 } from "lucide-react";
 
 /* ─── NAV ITEMS ─────────────────────────────────────── */
@@ -30,7 +19,7 @@ const navItems = [
   },
   {
     title: "Farmers",
-    path: "/admindashboard/farmers",
+    path: "/admindashboard/Users",
     icon: Tractor,
   },
   {
@@ -39,53 +28,9 @@ const navItems = [
     icon: Users,
   },
   {
-    title: "Crops & Advisory",
-    path: "/admindashboard/crops",
-    icon: Sprout,
-    subitems: [
-      { title: "Crop Listings", path: "/admindashboard/crops/listings", icon: Leaf },
-      { title: "AI Recommendations", path: "/admindashboard/crops/ai", icon: Sprout },
-    ],
-  },
-  {
-    title: "Marketplace",
-    path: "/admindashboard/marketplace",
-    icon: ShoppingBag,
-  },
-  {
-    title: "Weather Alerts",
-    path: "/admindashboard/weather",
-    icon: CloudRain,
-  },
-  {
-    title: "Pest Detection",
-    path: "/admindashboard/pest-detection",
-    icon: Bug,
-  },
-  {
-    title: "Knowledge Base",
-    path: "/admindashboard/knowledge",
-    icon: BookOpen,
-  },
-  {
-    title: "Analytics",
-    path: "/admindashboard/analytics",
-    icon: BarChart3,
-  },
-  {
-    title: "Community",
-    path: "/admindashboard/community",
-    icon: MessageSquare,
-  },
-  {
     title: "Notifications",
     path: "/admindashboard/notifications",
     icon: Bell,
-  },
-  {
-    title: "Reports",
-    path: "/admindashboard/reports",
-    icon: FileText,
   },
   {
     title: "Settings",

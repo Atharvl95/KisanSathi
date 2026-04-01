@@ -12,6 +12,8 @@ import Admindash from "./Pages/Admindash/Admindash";
 import AdminOverview from "./Components/Admindashboard/AdminOverview";
 import ManageUsers from "./Components/Admindashboard/ManageUsers";
 import ManageExperts from "./Components/Admindashboard/ManageExperts";
+import AdminSettings from "./Components/Admindashboard/AdminSetting";      // ← no 's'
+import Notifications from "./Components/Admindashboard/Notificatios";      // ← missing 'n'
 
 function App() {
   return (
@@ -27,10 +29,12 @@ function App() {
 
         {/* Admin Routes */}
         <Route path="/admindashboard" element={<Admindash />}>
-  <Route index element={<AdminOverview />} />
-  <Route path="users" element={<ManageUsers />} />
-  <Route path="experts" element={<ManageExperts />} />
-</Route>
+          <Route index element={<AdminOverview />} />
+          <Route path="users" element={<ManageUsers />} />
+          <Route path="experts" element={<ManageExperts />} />
+          <Route path="notifications" element={<Notifications />} />     {/* ← add */}
+          <Route path="settings" element={<AdminSettings />} />          {/* ← add */}
+        </Route>
       </Routes>
     </BrowserRouter>
   );
