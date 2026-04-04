@@ -73,9 +73,7 @@ const styles = `
     gap: 6px;
   }
 
-  .cr-label-icon {
-    font-size: 14px;
-  }
+  .cr-label-icon { font-size: 14px; }
 
   .cr-slider-wrap {
     display: flex;
@@ -174,10 +172,18 @@ const styles = `
 
   .cr-reset-btn:hover { background: #f9fafb; color: #374151; }
 
-  /* Result */
-  .cr-result {
-    animation: cr-fadeIn 0.4s ease;
+  .cr-error-box {
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    color: #b91c1c;
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-size: 0.82rem;
+    margin-top: 8px;
   }
+
+  /* Result */
+  .cr-result { animation: cr-fadeIn 0.4s ease; }
 
   @keyframes cr-fadeIn {
     from { opacity: 0; transform: translateY(8px); }
@@ -303,101 +309,105 @@ const styles = `
   .cr-tip-text { font-size: 0.78rem; color: #166534; line-height: 1.5; }
 `;
 
+// ── Field definitions use min/max from the actual dataset ──
 const fields = [
-  { key: "N", label: "Nitrogen (N)", icon: "🌿", unit: "mg/kg", min: 0, max: 140, step: 1, default: 50 },
-  { key: "P", label: "Phosphorus (P)", icon: "🔴", unit: "mg/kg", min: 5, max: 145, step: 1, default: 50 },
-  { key: "K", label: "Potassium (K)", icon: "🟡", unit: "mg/kg", min: 5, max: 205, step: 1, default: 48 },
-  { key: "temperature", label: "Temperature", icon: "🌡️", unit: "°C", min: 8, max: 44, step: 0.1, default: 25 },
-  { key: "humidity", label: "Humidity", icon: "💧", unit: "%", min: 14, max: 100, step: 0.1, default: 71 },
-  { key: "pH", label: "Soil pH", icon: "⚗️", unit: "", min: 3.5, max: 9.9, step: 0.01, default: 6.5 },
-  { key: "rainfall", label: "Rainfall", icon: "🌧️", unit: "mm", min: 20, max: 299, step: 0.1, default: 100 },
+  { key: "N",           label: "Nitrogen (N)",    icon: "🌿", unit: "mg/kg", min: 0,   max: 140, step: 1,    default: 50  },
+  { key: "P",           label: "Phosphorus (P)",  icon: "🔴", unit: "mg/kg", min: 5,   max: 145, step: 1,    default: 50  },
+  { key: "K",           label: "Potassium (K)",   icon: "🟡", unit: "mg/kg", min: 5,   max: 205, step: 1,    default: 48  },
+  { key: "temperature", label: "Temperature",     icon: "🌡️", unit: "°C",    min: 8,   max: 44,  step: 0.1,  default: 25  },
+  { key: "humidity",    label: "Humidity",        icon: "💧", unit: "%",     min: 14,  max: 100, step: 0.1,  default: 71  },
+  { key: "ph",          label: "Soil pH",         icon: "⚗️", unit: "",      min: 3.5, max: 9.9, step: 0.01, default: 6.5 },
+  { key: "rainfall",    label: "Rainfall",        icon: "🌧️", unit: "mm",    min: 20,  max: 299, step: 0.1,  default: 100 },
 ];
 
 const cropData = {
-  rice:        { emoji: "🌾", hint: "Grows well in waterlogged fields", season: "Kharif", duration: "90–150 days", water: "High" },
-  maize:       { emoji: "🌽", hint: "Needs well-drained fertile soil", season: "Kharif/Rabi", duration: "80–110 days", water: "Moderate" },
-  chickpea:    { emoji: "🫘", hint: "Ideal for dry, cool climates", season: "Rabi", duration: "90–120 days", water: "Low" },
-  kidneybeans: { emoji: "🫘", hint: "Needs moderate temperature", season: "Kharif", duration: "90–120 days", water: "Moderate" },
-  pigeonpeas:  { emoji: "🌿", hint: "Drought tolerant legume", season: "Kharif", duration: "120–180 days", water: "Low" },
-  mothbeans:   { emoji: "🌱", hint: "Highly drought resistant", season: "Kharif", duration: "60–90 days", water: "Very Low" },
-  mungbean:    { emoji: "🫛", hint: "Short-duration warm season crop", season: "Kharif", duration: "60–90 days", water: "Low" },
-  blackgram:   { emoji: "⚫", hint: "Grows in hot humid conditions", season: "Kharif", duration: "70–90 days", water: "Low" },
-  lentil:      { emoji: "🍂", hint: "Cool season crop, nitrogen fixer", season: "Rabi", duration: "90–130 days", water: "Low" },
-  pomegranate: { emoji: "🍎", hint: "Thrives in hot arid climates", season: "Perennial", duration: "5–7 months", water: "Low" },
-  banana:      { emoji: "🍌", hint: "Needs high humidity and warmth", season: "Perennial", duration: "10–15 months", water: "High" },
-  mango:       { emoji: "🥭", hint: "Tropical fruit, loves heat", season: "Perennial", duration: "3–5 months", water: "Low" },
-  grapes:      { emoji: "🍇", hint: "Warm dry climate preferred", season: "Perennial", duration: "5–8 months", water: "Moderate" },
-  watermelon:  { emoji: "🍉", hint: "Hot summer fruit", season: "Kharif", duration: "70–90 days", water: "Moderate" },
-  muskmelon:   { emoji: "🍈", hint: "Warm season, well-drained soil", season: "Kharif", duration: "75–100 days", water: "Moderate" },
-  apple:       { emoji: "🍏", hint: "Cool temperate climate needed", season: "Rabi", duration: "5–6 months", water: "Moderate" },
-  orange:      { emoji: "🍊", hint: "Subtropical citrus fruit", season: "Perennial", duration: "6–8 months", water: "Moderate" },
-  papaya:      { emoji: "🧡", hint: "Fast growing tropical fruit", season: "Perennial", duration: "9–11 months", water: "Moderate" },
-  coconut:     { emoji: "🥥", hint: "Coastal humid tropical climate", season: "Perennial", duration: "12 months", water: "High" },
-  cotton:      { emoji: "☁️", hint: "Needs high K and warm temp", season: "Kharif", duration: "150–180 days", water: "Moderate" },
-  jute:        { emoji: "🌿", hint: "Warm humid climate crop", season: "Kharif", duration: "100–120 days", water: "High" },
-  coffee:      { emoji: "☕", hint: "Cool humid hill regions", season: "Perennial", duration: "9–11 months", water: "Moderate" },
+  rice:        { emoji: "🌾", hint: "Grows well in waterlogged fields",    season: "Kharif",       duration: "90–150 days",   water: "High"     },
+  maize:       { emoji: "🌽", hint: "Needs well-drained fertile soil",     season: "Kharif/Rabi",  duration: "80–110 days",   water: "Moderate" },
+  chickpea:    { emoji: "🫘", hint: "Ideal for dry, cool climates",        season: "Rabi",         duration: "90–120 days",   water: "Low"      },
+  kidneybeans: { emoji: "🫘", hint: "Needs moderate temperature",          season: "Kharif",       duration: "90–120 days",   water: "Moderate" },
+  pigeonpeas:  { emoji: "🌿", hint: "Drought tolerant legume",             season: "Kharif",       duration: "120–180 days",  water: "Low"      },
+  mothbeans:   { emoji: "🌱", hint: "Highly drought resistant",            season: "Kharif",       duration: "60–90 days",    water: "Very Low" },
+  mungbean:    { emoji: "🫛", hint: "Short-duration warm season crop",     season: "Kharif",       duration: "60–90 days",    water: "Low"      },
+  blackgram:   { emoji: "⚫", hint: "Grows in hot humid conditions",       season: "Kharif",       duration: "70–90 days",    water: "Low"      },
+  lentil:      { emoji: "🍂", hint: "Cool season crop, nitrogen fixer",    season: "Rabi",         duration: "90–130 days",   water: "Low"      },
+  pomegranate: { emoji: "🍎", hint: "Thrives in hot arid climates",        season: "Perennial",    duration: "5–7 months",    water: "Low"      },
+  banana:      { emoji: "🍌", hint: "Needs high humidity and warmth",      season: "Perennial",    duration: "10–15 months",  water: "High"     },
+  mango:       { emoji: "🥭", hint: "Tropical fruit, loves heat",          season: "Perennial",    duration: "3–5 months",    water: "Low"      },
+  grapes:      { emoji: "🍇", hint: "Warm dry climate preferred",          season: "Perennial",    duration: "5–8 months",    water: "Moderate" },
+  watermelon:  { emoji: "🍉", hint: "Hot summer fruit",                    season: "Kharif",       duration: "70–90 days",    water: "Moderate" },
+  muskmelon:   { emoji: "🍈", hint: "Warm season, well-drained soil",      season: "Kharif",       duration: "75–100 days",   water: "Moderate" },
+  apple:       { emoji: "🍏", hint: "Cool temperate climate needed",       season: "Rabi",         duration: "5–6 months",    water: "Moderate" },
+  orange:      { emoji: "🍊", hint: "Subtropical citrus fruit",            season: "Perennial",    duration: "6–8 months",    water: "Moderate" },
+  papaya:      { emoji: "🧡", hint: "Fast growing tropical fruit",         season: "Perennial",    duration: "9–11 months",   water: "Moderate" },
+  coconut:     { emoji: "🥥", hint: "Coastal humid tropical climate",      season: "Perennial",    duration: "12 months",     water: "High"     },
+  cotton:      { emoji: "☁️", hint: "Needs high K and warm temp",          season: "Kharif",       duration: "150–180 days",  water: "Moderate" },
+  jute:        { emoji: "🌿", hint: "Warm humid climate crop",             season: "Kharif",       duration: "100–120 days",  water: "High"     },
+  coffee:      { emoji: "☕", hint: "Cool humid hill regions",             season: "Perennial",    duration: "9–11 months",   water: "Moderate" },
 };
 
-function predictCrop(N, P, K, temp, humidity, pH, rainfall) {
-  if (rainfall > 200 && N > 70 && humidity > 80) return "rice";
-  if (N > 60 && humidity > 65 && rainfall > 60 && temp > 18 && temp < 30) return "maize";
-  if (N < 50 && rainfall > 200 && humidity > 75 && temp > 22) return "banana";
-  if (N > 50 && humidity > 75 && rainfall > 150 && temp > 25) return "jute";
-  if (N > 80 && humidity > 60 && temp > 24 && rainfall > 100) return "papaya";
-  if (K > 150 && P > 70 && humidity < 65 && temp > 25) return "cotton";
-  if (temp > 30 && humidity < 60 && rainfall < 100 && pH > 5.5 && pH < 7) return "pomegranate";
-  if (temp > 28 && humidity < 55 && rainfall < 80) return "mango";
-  if (temp > 25 && humidity < 60 && rainfall < 70 && N < 30) return "grapes";
-  if (temp > 27 && humidity > 70 && rainfall < 90 && N < 25) return "watermelon";
-  if (temp > 28 && humidity > 65 && rainfall < 100 && N < 30) return "muskmelon";
-  if (temp < 20 && humidity < 60 && rainfall > 100 && N < 30) return "apple";
-  if (temp > 22 && humidity > 60 && rainfall > 100 && N < 35) return "orange";
-  if (N > 70 && K > 30 && humidity > 75 && rainfall > 150) return "coconut";
-  if (temp > 25 && humidity > 80 && rainfall > 100 && pH < 6.5) return "coffee";
-  if (N < 30 && temp > 20 && rainfall < 80 && pH > 6) return "lentil";
-  if (N < 40 && temp < 22 && rainfall > 60) return "chickpea";
-  if (N < 25 && humidity < 55 && rainfall < 60) return "mothbeans";
-  if (N < 35 && humidity > 70 && temp > 25) return "mungbean";
-  if (N < 40 && temp > 25 && rainfall < 80) return "blackgram";
-  if (N < 25 && temp > 25 && rainfall > 100) return "pigeonpeas";
-  return "kidneybeans";
-}
+// ── Points to your Express backend ──
+const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
 const defaultValues = Object.fromEntries(fields.map(f => [f.key, f.default]));
 
 export default function CropRecommendation() {
-  const [values, setValues] = useState(defaultValues);
-  const [result, setResult] = useState(null);
+  const [values, setValues]   = useState(defaultValues);
+  const [result, setResult]   = useState(null);       // crop name string
+  const [confidence, setConfidence] = useState(null); // real confidence from model
   const [loading, setLoading] = useState(false);
-  const [confidence] = useState(92);
+  const [error, setError]     = useState(null);
 
   const handleChange = (key, val) => {
     setValues(prev => ({ ...prev, [key]: parseFloat(val) }));
   };
 
-  const handlePredict = () => {
+  // ── Real API call to Express → Flask → ML model ──
+  const handlePredict = async () => {
     setLoading(true);
     setResult(null);
-    setTimeout(() => {
-      const crop = predictCrop(
-        values.N, values.P, values.K,
-        values.temperature, values.humidity,
-        values.pH, values.rainfall
-      );
-      setResult(crop);
+    setError(null);
+    setConfidence(null);
+
+    try {
+      const res = await fetch(`${API_BASE}/api/crop/predict`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          N:           values.N,
+          P:           values.P,
+          K:           values.K,
+          temperature: values.temperature,
+          humidity:    values.humidity,
+          ph:          values.ph,        // lowercase 'ph' to match Flask
+          rainfall:    values.rainfall,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) throw new Error(data.error || "Prediction failed");
+
+      setResult(data.recommended_crop);
+      setConfidence(Math.round(data.confidence * 100));
+
+    } catch (err) {
+      setError(err.message);
+    } finally {
       setLoading(false);
-    }, 900);
+    }
   };
 
   const handleReset = () => {
     setValues(defaultValues);
     setResult(null);
+    setConfidence(null);
+    setError(null);
   };
 
   const formatVal = (f) => {
     const v = values[f.key];
     if (f.step < 0.1) return v.toFixed(2);
-    if (f.step < 1) return v.toFixed(1);
+    if (f.step < 1)   return v.toFixed(1);
     return v;
   };
 
@@ -413,7 +423,8 @@ export default function CropRecommendation() {
 
       <div className="cr-body">
         <div className="cr-grid">
-          {/* Left: Input Form */}
+
+          {/* ── Left: Input Form ── */}
           <div className="cr-card">
             <div className="cr-card-header">
               <div style={{ width: 32, height: 32, borderRadius: 10, background: "#f0fdf4", display: "flex", alignItems: "center", justifyContent: "center" }}>
@@ -426,6 +437,7 @@ export default function CropRecommendation() {
             </div>
             <div className="cr-card-body">
               <div className="cr-fields">
+
                 <div className="cr-field-row">
                   {fields.slice(0, 3).map(f => (
                     <div className="cr-field" key={f.key}>
@@ -511,6 +523,11 @@ export default function CropRecommendation() {
                   ))}
                 </div>
 
+                {/* Error */}
+                {error && (
+                  <div className="cr-error-box">⚠️ {error}</div>
+                )}
+
                 <button className="cr-predict-btn" onClick={handlePredict} disabled={loading}>
                   {loading ? (
                     <><RefreshCw size={16} style={{ animation: "spin 1s linear infinite" }} /> Analyzing...</>
@@ -521,11 +538,12 @@ export default function CropRecommendation() {
                 <button className="cr-reset-btn" onClick={handleReset}>
                   <RefreshCw size={14} /> Reset to Default
                 </button>
+
               </div>
             </div>
           </div>
 
-          {/* Right: Result */}
+          {/* ── Right: Result ── */}
           <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
             <div className="cr-card">
               <div className="cr-card-header">
@@ -536,7 +554,7 @@ export default function CropRecommendation() {
                 {result && <CheckCircle size={20} color="#16a34a" />}
               </div>
               <div className="cr-card-body">
-                {!result && !loading && (
+                {!result && !loading && !error && (
                   <div className="cr-empty">
                     <div className="cr-empty-icon">🌾</div>
                     <div className="cr-empty-text">
@@ -619,6 +637,7 @@ export default function CropRecommendation() {
               </div>
             </div>
           </div>
+
         </div>
       </div>
 
