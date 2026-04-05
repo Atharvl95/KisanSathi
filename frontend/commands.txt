@@ -1,0 +1,21 @@
+=== START COMMANDS ===
+
+1. FLASK (Terminal 1)
+cd D:\ATHARV\projects\kisansathi\ml-service
+C:\Users\Admin\AppData\Local\Python\pythoncore-3.14-64\python.exe app.py
+
+2. EXPRESS (Terminal 2)
+cd D:\ATHARV\projects\kisansathi\backend
+node server.js
+
+3. REACT (Terminal 3)
+cd D:\ATHARV\projects\kisansathi\frontend
+npm run dev
+
+=== TEST COMMANDS ===
+
+Test Flask directly:
+Invoke-RestMethod -Uri "http://127.0.0.1:5001/predict" -Method POST -ContentType "application/json" -Body '{"N":88,"P":70,"K":126,"temperature":17.0,"humidity":45.3,"ph":6.50,"rainfall":57.7}'
+
+Test Express → Flask:
+Invoke-RestMethod -Uri "http://localhost:5000/api/crop/predict" -Method POST -ContentType "application/json" -Body '{"N":88,"P":70,"K":126,"temperature":17.0,"humidity":45.3,"ph":6.50,"rainfall":57.7}'
