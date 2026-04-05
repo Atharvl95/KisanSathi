@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Layout from "../../Components/Layout/Layout";
 
 const EyeIcon = ({ open }) => open ? (
@@ -115,6 +116,7 @@ function RoleSelector({ role, setRole }) {
 }
 
 export default function AuthPage() {
+  const navigate = useNavigate();
   const [tab, setTab] = useState("login");
   const [role, setRole] = useState("farmer"); // 🔑 shared role state
   const [loaded, setLoaded] = useState(false);
@@ -137,13 +139,21 @@ export default function AuthPage() {
   const handleLogin = () => {
     if (!login.email || !login.password) return;
     setLoading(true);
-    setTimeout(() => { setLoading(false); setLoginSuccess(true); }, 1400);
+    setTimeout(() => { 
+      setLoading(false); 
+      setLoginSuccess(true); 
+      setTimeout(() => navigate(role === "farmer" ? "/farmerdashboard" : "/expertdashboard"), 1500);
+    }, 1400);
   };
 
   const handleSignup = () => {
     if (!signup.name || !signup.email || !signup.password || !signup.confirm) return;
     setLoading(true);
-    setTimeout(() => { setLoading(false); setSignupSuccess(true); }, 1400);
+    setTimeout(() => { 
+      setLoading(false); 
+      setSignupSuccess(true); 
+      setTimeout(() => navigate(role === "farmer" ? "/farmerdashboard" : "/expertdashboard"), 1500);
+    }, 1400);
   };
 
   const FEATURES = [

@@ -12,8 +12,14 @@ app.use(cors());
 app.use(express.json());
 
 // ── Routes ──
-const cropRoutes = require("./routes/cropPrediction");
-app.use("/api/crop", cropRoutes);
+const cropRoutes    = require("./routes/cropPrediction");
+const schemesRoutes = require("./routes/schemes");
+const expertsRoutes = require("./routes/experts");
+const bookingsRoutes = require("./routes/bookings");
+app.use("/api/crop",     cropRoutes);
+app.use("/api/schemes",  schemesRoutes);
+app.use("/api/experts",  expertsRoutes);
+app.use("/api/bookings", bookingsRoutes);
 
 // ── Health check ──
 app.get("/", (req, res) => {

@@ -10,6 +10,8 @@ import {
   Settings,
   LogOut,
   X,
+  FileText,
+  PhoneCall,
 } from "lucide-react";
 
 /* ─── NAV ITEMS ─────────────────────────────────────── */
@@ -30,6 +32,11 @@ const navItems = [
     icon: Users,
   },
   {
+    title: "Expert Connect",
+    path: "/farmerdashboard/expert-connect",
+    icon: PhoneCall,
+  },
+  {
     title: "Pest Detection",
     path: "/farmerdashboard/pestdetection",
     icon: Bug,
@@ -48,6 +55,11 @@ const navItems = [
     title: "Settings",
     path: "/farmerdashboard/settings",
     icon: Settings,
+  },
+  {
+    title: "Govt Schemes",
+    path: "/farmerdashboard/schemes",
+    icon: FileText,
   },
 ];
 

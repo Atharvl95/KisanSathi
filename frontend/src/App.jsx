@@ -25,6 +25,13 @@ import PestDetection         from "./Components/Farmerdashboard/PestDetection";
 import Weather               from "./Components/Farmerdashboard/Weather";
 import FarmerNotifications   from "./Components/Farmerdashboard/Notifications";
 import FarmerSettings        from "./Components/Farmerdashboard/Settings";
+import GovtSchemes           from "./Components/Farmerdashboard/GovtSchemes";
+
+// ── Expert Connect ────────────────────────────────────
+import ExpertList            from "./Components/ExpertConnect/ExpertList";
+import ExpertProfilePage     from "./Components/ExpertConnect/ExpertProfile";
+import ExpertBooking         from "./Components/ExpertConnect/ExpertBooking";
+import JitsiCall             from "./Components/ExpertConnect/JitsiCall";
 
 // ── Expert Dashboard ──────────────────────────────────
 import ExpertDashboardLayout from "./Pages/Expertdash/Expertdash";
@@ -66,6 +73,11 @@ function App() {
           <Route path="weather"            element={<Weather />}             />
           <Route path="notifications"      element={<FarmerNotifications />} />
           <Route path="settings"           element={<FarmerSettings />}      />
+          <Route path="schemes"            element={<GovtSchemes />}         />
+          <Route path="expert-connect"     element={<ExpertList />}          />
+          <Route path="expert-connect/:id" element={<ExpertProfilePage />}   />
+          <Route path="expert-connect/:id/book" element={<ExpertBooking />}  />
+          <Route path="call/:roomId"        element={<JitsiCall />}          />
         </Route>
 
         {/* ── Expert Routes ─────────────────────────── */}
