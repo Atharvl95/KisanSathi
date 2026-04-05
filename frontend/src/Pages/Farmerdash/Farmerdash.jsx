@@ -10,6 +10,7 @@ import {
   Settings,
   LogOut,
   X,
+  Bot,
 } from "lucide-react";
 
 /* ─── NAV ITEMS ─────────────────────────────────────── */
@@ -18,6 +19,12 @@ const navItems = [
     title: "Overview",
     path: "/farmerdashboard",
     icon: LayoutGrid,
+  },
+  {
+    title: "AI Assistant",
+    path: "/farmerdashboard/aiassistant",
+    icon: Bot,
+    badge: "NEW",
   },
   {
     title: "Crop Recommendation",
@@ -403,6 +410,19 @@ export function FarmerSidebar() {
                     <>
                       <Icon className="ks-farmer-nav-icon" />
                       {isExpanded && <span>{item.title}</span>}
+                      {isExpanded && item.badge && (
+                        <span style={{
+                          marginLeft: "auto",
+                          fontSize: "0.55rem",
+                          fontWeight: 700,
+                          padding: "2px 5px",
+                          borderRadius: 4,
+                          background: "linear-gradient(135deg,#ea580c,#fb923c)",
+                          color: "#fff",
+                          letterSpacing: "0.5px",
+                          flexShrink: 0,
+                        }}>{item.badge}</span>
+                      )}
                       {isActive && (
                         <div className="ks-farmer-active-indicator" />
                       )}

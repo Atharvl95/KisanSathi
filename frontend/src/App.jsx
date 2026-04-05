@@ -25,6 +25,7 @@ import PestDetection         from "./Components/Farmerdashboard/PestDetection";
 import Weather               from "./Components/Farmerdashboard/Weather";
 import FarmerNotifications   from "./Components/Farmerdashboard/Notifications";
 import FarmerSettings        from "./Components/Farmerdashboard/Settings";
+import AIAssistant           from "./Components/Farmerdashboard/AIAssistant";
 
 // ── Expert Dashboard ──────────────────────────────────
 import ExpertDashboardLayout from "./Pages/Expertdash/Expertdash";
@@ -60,6 +61,7 @@ function App() {
         {/* ── Farmer Routes ─────────────────────────── */}
         <Route path="/farmerdashboard" element={<FarmerDashboardLayout />}>
           <Route index                     element={<FarmerOverview />}      />
+          <Route path="aiassistant"        element={<AIAssistant />}         />
           <Route path="croprecommendation" element={<CropRecommendation />}  />
           <Route path="experthelp"         element={<ExpertHelp />}          />
           <Route path="pestdetection"      element={<PestDetection />}       />
