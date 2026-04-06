@@ -12,6 +12,7 @@ import {
   X,
   FileText,
   PhoneCall,
+  Bot,
 } from "lucide-react";
 
 /* ─── NAV ITEMS ─────────────────────────────────────── */
@@ -20,6 +21,11 @@ const navItems = [
     title: "Overview",
     path: "/farmerdashboard",
     icon: LayoutGrid,
+  },
+  {
+    title: "AI Assistant",
+    path: "/farmerdashboard/aiassistant",
+    icon: Bot,
   },
   {
     title: "Crop Recommendation",
